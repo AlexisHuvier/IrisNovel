@@ -27,6 +27,8 @@ namespace IrisPlayer
                 foreach(var sprite in characters.Value.Sprites)
                     Window.ResourceManager.LoadTexture(sprite.Key, Path.Combine(Project.Folder, sprite.Value));
             }
+            foreach (var backgrounds in Project.ResourceData.Backgrounds)
+                Window.ResourceManager.LoadTexture(backgrounds.Key, Path.Combine(Project.Folder, backgrounds.Value));
         }
 
         public void UnloadResources()
