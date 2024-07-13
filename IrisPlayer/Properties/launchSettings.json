@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "IrisPlayer - Release": {
+      "commandName": "Project",
+      "commandLineArgs": "Demo"
+    },
+    "IrisPlayer - Debug": {
+      "commandName": "Project",
+      "commandLineArgs": "-d Demo"
+    }
+  }
+}

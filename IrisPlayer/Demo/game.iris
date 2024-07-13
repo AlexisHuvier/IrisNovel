@@ -1,0 +1,7 @@
+﻿say Player "Salut... C'est compliqué tout ça non ?"
+show Player Full center
+say Player "Incroyable... Je suis dans un jeu vidéo !"
+hide SpeechZone
+show Player Full left
+hide Player
+sayFull "Salut !"
