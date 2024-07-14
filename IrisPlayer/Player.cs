@@ -1,5 +1,7 @@
 ﻿using IrisCore.Project;
 using IrisPlayer.Engine;
+using SDL_Sharp.Ttf;
+using SDL_Sharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,9 @@ namespace IrisPlayer
         {
             Window.ResourceManager.UnloadAllTextures();
             Window.ResourceManager.UnloadAllFonts();
+
+            TTF.Quit();
+            SDL.Quit();
         }
     }
 }

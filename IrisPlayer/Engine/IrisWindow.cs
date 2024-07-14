@@ -41,6 +41,8 @@ public class IrisWindow
         ResourceManager = new ResourceManager(Renderer);
 
         IPConstants.Logger.Debug("Base Path SDL : {BasePath}", SDL.GetBasePath());
+
+        MainMenuScene = new MainMenuScene();
     }
 
     public void Run()
@@ -53,12 +55,12 @@ public class IrisWindow
             {
                 if(e.Type == EventType.Quit)
                     IsRunning = false;
+                MainMenuScene.Update(this, e);
             }
 
             Renderer.Clear();
 
-            // RENDER THINGS HERE
-
+            MainMenuScene.Render(this);
             Renderer.Render();
         }
 
