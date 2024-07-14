@@ -1,5 +1,8 @@
-﻿using IrisPlayer.Engine.Renderer;
+﻿using IrisCore.Project;
+using IrisPlayer.Engine.Renderer;
+using IrisPlayer.Engine.Scene;
 using SDL_Sharp;
+using SDL_Sharp.Ttf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +16,17 @@ public class IrisWindow
     public bool IsRunning { get; set; }
     public ResourceManager ResourceManager { get; }
     public IrisRenderer Renderer { get; }
+    public IrisProject Project { get; }
+    public MainMenuScene MainMenuScene { get; }
 
     internal Window Window { get; }
 
-    public IrisWindow(int weight, int height, string title, Color backgroundColor)
+    public IrisWindow(IrisProject irisProject)
     {
+        Project = irisProject;
 
         SDL.Init(SdlInitFlags.Video);
-        Window = SDL.CreateWindow(title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, weight, height, WindowFlags.Resizable);
+        Window = SDL.CreateWindow(Project.WindowData.Title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, Project.WindowData.Width, Project.WindowData.Height, WindowFlags.Resizable);
         if (Window.IsNull)
         {
             IPConstants.Logger.Error("Failed to create window : {error}", SDL.GetError());
@@ -29,7 +35,7 @@ public class IrisWindow
 
         Renderer = new IrisRenderer(this)
         {
-            ClearColor = backgroundColor
+            ClearColor = Project.WindowData.BackgroundColor.ToColor()
         };
 
         ResourceManager = new ResourceManager(Renderer);

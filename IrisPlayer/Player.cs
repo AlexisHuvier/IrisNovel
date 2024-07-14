@@ -11,7 +11,7 @@ namespace IrisPlayer
     internal class Player(IrisProject project)
     {
         public IrisProject Project { get; } = project;
-        public IrisWindow Window { get; } = new IrisWindow(project.WindowData.Width, project.WindowData.Height, project.WindowData.Title, project.WindowData.BackgroundColor.ToColor());
+        public IrisWindow Window { get; } = new IrisWindow(project);
 
         public void Run()
         {
