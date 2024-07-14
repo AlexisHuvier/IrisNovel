@@ -27,6 +27,12 @@
     <None Update="Demo\project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Demo\project.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Demo\scripts\scene1.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="IrisResources\iris-font.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
