@@ -23,7 +23,7 @@ public class IrisWindow
         Window = SDL.CreateWindow(title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, weight, height, WindowFlags.Resizable);
         if (Window.IsNull)
         {
-            IPConstants.Logger.Error("Failed to create window");
+            IPConstants.Logger.Error("Failed to create window : {error}", SDL.GetError());
             throw new Exception("Failed to create window");
         }
 

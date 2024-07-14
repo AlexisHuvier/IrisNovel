@@ -28,7 +28,7 @@ public class ResourceManager(IrisRenderer renderer)
         var texture = IMG.LoadTexture(_renderer.Renderer, path);
         if (texture.IsNull)
         { 
-            IPConstants.Logger.Error("Failed to load texture: {texturePath}", path);
+            IPConstants.Logger.Error("Failed to load texture {texturePath} : {error}", path, SDL.GetError());
             return;
         }
 
@@ -48,10 +48,13 @@ public class ResourceManager(IrisRenderer renderer)
     public void UnloadAllTextures()
     {
         foreach (var texture in _textures)
+        {
+            IPConstants.Logger.Debug("Texture {textureName} unloaded", texture.Key);
             SDL.DestroyTexture(texture.Value.Texture);
+        }
         _textures.Clear();
 
-        IPConstants.Logger.Debug("All textures unloaded");
+        IPConstants.Logger.Information("All textures unloaded");
     }
 
     public void LoadFont(string name, IrisCore.Project.Resource.Font fontInfo)
@@ -65,7 +68,7 @@ public class ResourceManager(IrisRenderer renderer)
         var font = TTF.OpenFont(fontInfo.RealPath, fontInfo.Size);
         if (font.IsNull)
         {
-            IPConstants.Logger.Error("Failed to load font: {@fontInfo}", fontInfo);
+            IPConstants.Logger.Error("Failed to load font {@fontInfo} : {error}", fontInfo, SDL.GetError());
             return;
         }
 
@@ -85,9 +88,12 @@ public class ResourceManager(IrisRenderer renderer)
     public void UnloadAllFonts()
     {
         foreach (var font in _fonts)
+        {
+            IPConstants.Logger.Debug("Font {fontName} unloaded", font.Key);
             TTF.CloseFont(font.Value);
+        }
         _fonts.Clear();
 
-        IPConstants.Logger.Debug("All fonts unloaded");
+        IPConstants.Logger.Information("All fonts unloaded");
     }
 }

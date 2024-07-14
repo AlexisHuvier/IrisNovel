@@ -15,20 +15,18 @@ Parser.Default.ParseArguments<IPOptions>(args)
             return;
         }
 
-        LogContext.PushProperty("ProjectFolder", o.ProjectFolder);
-        IPConstants.Logger.Information("Loading project from {ProjectFolder}");
+        IPConstants.Logger.Information("Loading project from {ProjectFolder}", o.ProjectFolder);
         var project = IrisProject.Load(o.ProjectFolder);
-
-        LogContext.PushProperty("ProjectName", project.MetaData.Name);
-        IPConstants.Logger.Information("Project {ProjectName} loaded");
+        IPConstants.Logger.Information("Project {ProjectName} loaded", project.MetaData.Name);
 
         IPConstants.Logger.Information("Creating player with project");
         var player = new Player(project);
+        IPConstants.Logger.Information("Loading Iris resources");
         IPConstants.Logger.Information("Loading project resources");
         player.LoadResources();
         IPConstants.Logger.Information("Running player");
         player.Run();
-        IPConstants.Logger.Information("Unloading project resources");
+        IPConstants.Logger.Information("Unloading all resources");
         player.UnloadResources();
         IPConstants.Logger.Information("Player stopped");
     });
