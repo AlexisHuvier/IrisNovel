@@ -34,7 +34,12 @@ namespace IrisPlayer
 
         public static Logger CreateLogger(this bool debug)
         {
-            var config = new LoggerConfiguration().WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Properties}{NewLine}{Exception}").Enrich.FromLogContext();
+            if (File.Exists("log.txt"))
+                File.Delete("log.txt");
+
+            var config = new LoggerConfiguration()
+                .WriteTo.File("log.txt").Enrich.FromLogContext()
+                .WriteTo.Console().Enrich.FromLogContext();
             if(debug)
                 config.MinimumLevel.Debug();
             return config.CreateLogger();
