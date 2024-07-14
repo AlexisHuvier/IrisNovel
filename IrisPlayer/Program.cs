@@ -22,8 +22,9 @@ Parser.Default.ParseArguments<IPOptions>(args)
         IPConstants.Logger.Information("Creating player with project");
         var player = new Player(project);
         IPConstants.Logger.Information("Loading Iris resources");
+        player.LoadIrisResources();
         IPConstants.Logger.Information("Loading project resources");
-        player.LoadResources();
+        player.LoadProjectResources();
         IPConstants.Logger.Information("Running player");
         player.Run();
         IPConstants.Logger.Information("Unloading all resources");

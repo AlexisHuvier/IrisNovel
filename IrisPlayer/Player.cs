@@ -20,7 +20,15 @@ namespace IrisPlayer
             Window.Run();
         }
 
-        public void LoadResources()
+        public void LoadIrisResources()
+        {
+            Window.ResourceManager.LoadFont("IrisDefault", new IrisCore.Project.Resource.Font {
+                RealPath = "IrisResources/iris-font.ttf",
+                Size = 25
+            });
+        }
+
+        public void LoadProjectResources()
         {
             foreach(var fonts in Project.ResourceData.Fonts)
                 Window.ResourceManager.LoadFont(fonts.Key, fonts.Value.UpdatedWithFolder(Project.Folder));

@@ -26,6 +26,8 @@ public class IrisWindow
         Project = irisProject;
 
         SDL.Init(SdlInitFlags.Video);
+        TTF.Init();
+
         Window = SDL.CreateWindow(Project.WindowData.Title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, Project.WindowData.Width, Project.WindowData.Height, WindowFlags.Resizable);
         if (Window.IsNull)
         {

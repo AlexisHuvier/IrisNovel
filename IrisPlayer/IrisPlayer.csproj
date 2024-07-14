@@ -27,6 +27,13 @@
     <None Update="Demo\project.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="IrisResources\iris-font.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IrisResources\" />
   </ItemGroup>
 
 </Project>
