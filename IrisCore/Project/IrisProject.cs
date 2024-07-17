@@ -1,5 +1,4 @@
 ﻿using IrisCore.Project.Resource;
-using IrisCore.Scripting;
 using NLua;
 using System;
 using System.Collections.Generic;
