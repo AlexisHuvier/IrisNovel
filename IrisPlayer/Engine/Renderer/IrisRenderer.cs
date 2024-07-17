@@ -20,10 +20,7 @@ namespace IrisPlayer.Engine.Renderer
             Window = window;
             Renderer = SDL.CreateRenderer(window.Window, -1, RendererFlags.Accelerated);
             if (Renderer.IsNull)
-            {
                 IPConstants.Logger.Error("Failed to create renderer : {error}", SDL.GetError());
-                throw new Exception("Failed to create renderer");
-            }
         }
 
         public void Clear()

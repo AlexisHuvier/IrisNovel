@@ -42,7 +42,7 @@ public class ResourceManager(IrisRenderer renderer)
             return value;
         
         IPConstants.Logger.Error("Texture {textureName} not found", name);
-        throw new NullReferenceException($"Texture {name} not found");
+        throw new ArgumentException($"Texture {name} not found");
     }
 
     public void UnloadAllTextures()
@@ -82,7 +82,7 @@ public class ResourceManager(IrisRenderer renderer)
             return value;
         
         IPConstants.Logger.Error("Font {fontName} not found", name);
-        throw new NullReferenceException($"Font {name} not found");
+        throw new ArgumentException($"Font {name} not found");
     }
 
     public void UnloadAllFonts()

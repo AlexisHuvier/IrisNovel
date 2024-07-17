@@ -12,8 +12,8 @@ public class RenderTexture
     public Texture Texture { get; }
     public int Width { get; }
     public int Height { get; }
-    public Rect FullSource;
-    public Point Center;
+    internal Rect FullSource;
+    internal Point Center;
     public RenderTexture(Texture texture)
     {
         Texture = texture;

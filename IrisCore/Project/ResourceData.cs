@@ -27,7 +27,7 @@ public class ResourceData
     public void AddCharacterSprite(string characterName, string spriteName, string path)
     {
         if (!Characters.TryGetValue(characterName, out Character? value))
-            throw new Exception("Character not found");
+            throw new ArgumentException("Character not found");
         value.Sprites[spriteName] = path;
     }
 
