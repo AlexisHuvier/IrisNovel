@@ -11,7 +11,8 @@ public class MainMenuScene : IScene
 {
     public void Render(IrisWindow window)
     {
-        window.Renderer.RenderText(window.Project.WindowData.DefaultFont, window.Project.WindowData.Title, 200, 200);
+        var (Width, _) = window.Renderer.GetTextSize(window.Project.WindowData.DefaultFont, window.Project.WindowData.Title);
+        window.Renderer.RenderText(window.Project.WindowData.DefaultFont, window.Project.WindowData.Title, (window.Project.WindowData.Width - Width) / 2, 50);
     }
 
     public void Update(IrisWindow window, Event e)
