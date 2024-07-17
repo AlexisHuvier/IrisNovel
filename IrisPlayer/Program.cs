@@ -1,8 +1,6 @@
 ﻿using CommandLine;
 using IrisCore.Project;
 using IrisPlayer;
-using Serilog;
-using Serilog.Context;
 
 Parser.Default.ParseArguments<IPOptions>(args)
     .WithParsed(o =>
