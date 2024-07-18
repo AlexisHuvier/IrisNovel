@@ -66,7 +66,13 @@ namespace IrisPlayer.Engine.Renderer
             var renderFont = Window.ResourceManager.GetFont(font);
             TTF.RenderText_Solid(renderFont, text, new Color { }, out PSurface surface);
             var texture = new RenderTexture(SDL.CreateTextureFromSurface(Renderer, surface));
-            return new(texture.Width, texture.Height);
+
+            var size = (texture.Width, texture.Height);
+
+            SDL.FreeSurface(surface);
+            SDL.DestroyTexture(texture.Texture);
+
+            return size;
         }
 
         public void Destroy()
