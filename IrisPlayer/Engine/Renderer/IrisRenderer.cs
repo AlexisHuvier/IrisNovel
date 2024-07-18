@@ -20,15 +20,15 @@ namespace IrisPlayer.Engine.Renderer
             Window = window;
             Renderer = SDL.CreateRenderer(window.Window, -1, RendererFlags.Accelerated);
             if (Renderer.IsNull)
-                IPConstants.Logger.Error("Failed to create renderer : {error}", SDL.GetError());
+                IPConstants.Logger.Error("Failed to create renderer : {Error}", SDL.GetError());
         }
 
         public void Clear()
         {
             if(SDL.SetRenderDrawColor(Renderer, ClearColor.R, ClearColor.G, ClearColor.B, ClearColor.A) != 0)
-                IPConstants.Logger.Error("Failed to set render draw color : {error}", SDL.GetError());
+                IPConstants.Logger.Error("Failed to set render draw color : {Error}", SDL.GetError());
             if(SDL.RenderClear(Renderer) != 0)
-                IPConstants.Logger.Error("Failed to clear renderer : {error}", SDL.GetError());
+                IPConstants.Logger.Error("Failed to clear renderer : {Error}", SDL.GetError());
         }
 
         public void Render()
@@ -42,7 +42,7 @@ namespace IrisPlayer.Engine.Renderer
             var destination = new Rect { X = x, Y = y, Width = renderTexture.Width, Height = renderTexture.Height };
 
             if(SDL.RenderCopyEx(Renderer, Window.ResourceManager.GetTexture(texture).Texture, ref renderTexture.FullSource, ref destination, angle, ref renderTexture.Center, flip) != 0)
-                IPConstants.Logger.Error("Failed to render texture : {error}", SDL.GetError());
+                IPConstants.Logger.Error("Failed to render texture : {Error}", SDL.GetError());
         }
 
         public void RenderText(string font, string text, int x, int y) => RenderText(font, text, x, y, new Color { R = 0, G = 0, B = 0, A = 255 });
@@ -55,7 +55,7 @@ namespace IrisPlayer.Engine.Renderer
             var destination = new Rect { X = x, Y = y, Width = renderTexture.Width, Height = renderTexture.Height };
 
             if(SDL.RenderCopy(Renderer, renderTexture.Texture, ref renderTexture.FullSource, ref destination) != 0)
-                IPConstants.Logger.Error("Failed to render text : {error}", SDL.GetError());
+                IPConstants.Logger.Error("Failed to render text : {Error}", SDL.GetError());
 
             SDL.FreeSurface(surface);
             SDL.DestroyTexture(renderTexture.Texture);

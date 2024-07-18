@@ -19,7 +19,7 @@ public class RenderTexture
         Texture = texture;
 
         if(SDL.QueryTexture(texture, out _, out _, out int texW, out int texH) != 0)
-            IPConstants.Logger.Error("Failed to query texture : {error}", SDL.GetError());
+            IPConstants.Logger.Error("Failed to query texture : {Error}", SDL.GetError());
 
         Width = texW;
         Height = texH;

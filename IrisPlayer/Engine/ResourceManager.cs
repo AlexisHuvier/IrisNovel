@@ -21,18 +21,18 @@ public class ResourceManager(IrisRenderer renderer)
     {
         if (_textures.ContainsKey(name))
         {
-            IPConstants.Logger.Warning("Texture {textureName} already loaded", name);
+            IPConstants.Logger.Warning("Texture {TextureName} already loaded", name);
             return;
         }
 
         var texture = IMG.LoadTexture(_renderer.Renderer, path);
         if (texture.IsNull)
         { 
-            IPConstants.Logger.Error("Failed to load texture {texturePath} : {error}", path, SDL.GetError());
+            IPConstants.Logger.Error("Failed to load texture {TexturePath} : {Error}", path, SDL.GetError());
             return;
         }
 
-        IPConstants.Logger.Debug("Texture {textureName} loaded", name);
+        IPConstants.Logger.Debug("Texture {TextureName} loaded", name);
         _textures.Add(path, new RenderTexture(texture));
     }
 
@@ -41,7 +41,7 @@ public class ResourceManager(IrisRenderer renderer)
         if (_textures.TryGetValue(name, out var value) && value != null)
             return value;
         
-        IPConstants.Logger.Error("Texture {textureName} not found", name);
+        IPConstants.Logger.Error("Texture {TextureName} not found", name);
         throw new ArgumentException($"Texture {name} not found");
     }
 
@@ -49,7 +49,7 @@ public class ResourceManager(IrisRenderer renderer)
     {
         foreach (var texture in _textures)
         {
-            IPConstants.Logger.Debug("Texture {textureName} unloaded", texture.Key);
+            IPConstants.Logger.Debug("Texture {TextureName} unloaded", texture.Key);
             SDL.DestroyTexture(texture.Value.Texture);
         }
         _textures.Clear();
@@ -61,18 +61,18 @@ public class ResourceManager(IrisRenderer renderer)
     {
         if (_fonts.ContainsKey(name))
         {
-            IPConstants.Logger.Warning("Font {fontName} already loaded", name);
+            IPConstants.Logger.Warning("Font {FontName} already loaded", name);
             return;
         }
 
         var font = TTF.OpenFont(fontInfo.RealPath, fontInfo.Size);
         if (font.IsNull)
         {
-            IPConstants.Logger.Error("Failed to load font {@fontInfo} : {error}", fontInfo, SDL.GetError());
+            IPConstants.Logger.Error("Failed to load font {@FontInfo} : {Error}", fontInfo, SDL.GetError());
             return;
         }
 
-        IPConstants.Logger.Debug("Font {fontName} loaded", name);
+        IPConstants.Logger.Debug("Font {FontName} loaded", name);
         _fonts.Add(name, font);
     }
 
@@ -81,7 +81,7 @@ public class ResourceManager(IrisRenderer renderer)
         if (_fonts.TryGetValue(name, out SDL_Sharp.Ttf.Font value))
             return value;
         
-        IPConstants.Logger.Error("Font {fontName} not found", name);
+        IPConstants.Logger.Error("Font {FontName} not found", name);
         throw new ArgumentException($"Font {name} not found");
     }
 
@@ -89,7 +89,7 @@ public class ResourceManager(IrisRenderer renderer)
     {
         foreach (var font in _fonts)
         {
-            IPConstants.Logger.Debug("Font {fontName} unloaded", font.Key);
+            IPConstants.Logger.Debug("Font {FontName} unloaded", font.Key);
             TTF.CloseFont(font.Value);
         }
         _fonts.Clear();
