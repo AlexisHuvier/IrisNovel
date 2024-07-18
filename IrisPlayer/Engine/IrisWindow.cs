@@ -25,8 +25,10 @@ public class IrisWindow
     {
         Project = irisProject;
 
-        SDL.Init(SdlInitFlags.Video);
-        TTF.Init();
+        if(SDL.Init(SdlInitFlags.Video) != 0)
+            IPConstants.Logger.Error("Failed to initialize SDL : {error}", SDL.GetError());
+        if(TTF.Init() != 0)
+            IPConstants.Logger.Error("Failed to initialize SDL TTF : {error}", SDL.GetError());
 
         Window = SDL.CreateWindow(Project.WindowData.Title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, Project.WindowData.Width, Project.WindowData.Height, WindowFlags.Resizable);
         if (Window.IsNull)

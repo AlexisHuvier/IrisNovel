@@ -25,8 +25,10 @@ namespace IrisPlayer.Engine.Renderer
 
         public void Clear()
         {
-            SDL.SetRenderDrawColor(Renderer, ClearColor.R, ClearColor.G, ClearColor.B, ClearColor.A);
-            SDL.RenderClear(Renderer);
+            if(SDL.SetRenderDrawColor(Renderer, ClearColor.R, ClearColor.G, ClearColor.B, ClearColor.A) != 0)
+                IPConstants.Logger.Error("Failed to set render draw color : {error}", SDL.GetError());
+            if(SDL.RenderClear(Renderer) != 0)
+                IPConstants.Logger.Error("Failed to clear renderer : {error}", SDL.GetError());
         }
 
         public void Render()
@@ -39,7 +41,8 @@ namespace IrisPlayer.Engine.Renderer
             var renderTexture = Window.ResourceManager.GetTexture(texture);
             var destination = new Rect { X = x, Y = y, Width = renderTexture.Width, Height = renderTexture.Height };
 
-            SDL.RenderCopyEx(Renderer, Window.ResourceManager.GetTexture(texture).Texture, ref renderTexture.FullSource, ref destination, angle, ref renderTexture.Center, flip);
+            if(SDL.RenderCopyEx(Renderer, Window.ResourceManager.GetTexture(texture).Texture, ref renderTexture.FullSource, ref destination, angle, ref renderTexture.Center, flip) != 0)
+                IPConstants.Logger.Error("Failed to render texture : {error}", SDL.GetError());
         }
 
         public void RenderText(string font, string text, int x, int y) => RenderText(font, text, x, y, new Color { R = 0, G = 0, B = 0, A = 255 });
@@ -51,7 +54,8 @@ namespace IrisPlayer.Engine.Renderer
             var renderTexture = new RenderTexture(SDL.CreateTextureFromSurface(Renderer, surface));
             var destination = new Rect { X = x, Y = y, Width = renderTexture.Width, Height = renderTexture.Height };
 
-            SDL.RenderCopy(Renderer, renderTexture.Texture, ref renderTexture.FullSource, ref destination);
+            if(SDL.RenderCopy(Renderer, renderTexture.Texture, ref renderTexture.FullSource, ref destination) != 0)
+                IPConstants.Logger.Error("Failed to render text : {error}", SDL.GetError());
 
             SDL.FreeSurface(surface);
             SDL.DestroyTexture(renderTexture.Texture);
